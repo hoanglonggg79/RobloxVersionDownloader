@@ -32,6 +32,7 @@ A comprehensive tool to download and install Roblox Player directly from the off
 
 To function correctly, the application must maintain the following file structure:
 
+```plaintext
 RobloxVersionDownloader/
  ├── RobloxVersionDownloader.exe
  ├── _internal/        ← Required (build libraries)
@@ -42,10 +43,10 @@ RobloxVersionDownloader/
 ---
  
 ## 🛠 Troubleshooting
-### ❌ App won't start: Check if the _internal folder is missing or if your antivirus is blocking the execution.
-### 🌐 Network Errors: Check your internet connection or disable VPN.
-### 🔐 Permission Denied: Right-click the app and select "Run as Administrator".
-### 🚫 Error 403 Forbidden: The Version Hash is invalid, or the version has been removed from the Roblox CDN.
+- ❌ App won't start: Check if the _internal folder is missing or if your antivirus is blocking the execution.
+- 🌐 Network Errors: Check your internet connection or disable VPN.
+- 🔐 Permission Denied: Right-click the app and select "Run as Administrator".
+- 🚫 Error 403 Forbidden: The Version Hash is invalid, or the version has been removed from the Roblox CDN.
 
 ---
 
