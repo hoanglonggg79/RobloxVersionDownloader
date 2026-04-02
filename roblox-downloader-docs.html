@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox Version Downloader — Docs v1.1.0</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+  :root {
+    --bg:       #0d0d1a;
+    --panel:    #13132b;
+    --card:     #1a1a35;
+    --accent:   #e8314a;
+    --accent2:  #5e3ec2;
+    --fg:       #e8e8f0;
+    --muted:    #7070a0;
+    --success:  #3ee88a;
+    --warning:  #f5c842;
+    --error:    #ff5566;
+    --border:   #2a2a50;
+    --mono:     'Share Tech Mono', monospace;
+    --head:     'Syne', sans-serif;
+    --body:     'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: .5;
+  }
+
+  /* ── SIDEBAR NAV ── */
+  nav {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 240px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .nav-logo {
+    padding: 0 24px 28px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .nav-logo .logo-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .nav-logo .logo-ver {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--fg);
+    font-weight: bold;
+  }
+
+  .nav-section {
+    padding: 6px 24px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent2);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  nav a {
+    display: block;
+    padding: 8px 24px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: var(--body);
+    font-weight: 400;
+    transition: color .2s, background .2s, padding-left .2s;
+    border-left: 2px solid transparent;
+    position: relative;
+  }
+  nav a:hover {
+    color: var(--fg);
+    background: rgba(232,49,74,.07);
+    padding-left: 30px;
+    border-left-color: var(--accent);
+  }
+  nav a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  .nav-bottom {
+    margin-top: auto;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    font-family: var(--mono);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    margin-left: 240px;
+    padding: 60px 64px 120px;
+    max-width: 960px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 48px 0 64px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 72px;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: var(--head);
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--fg);
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .badge-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid;
+  }
+  .badge-green  { color: var(--success); border-color: var(--success); background: rgba(62,232,138,.08); }
+  .badge-purple { color: var(--accent2); border-color: var(--accent2); background: rgba(94,62,194,.10); }
+  .badge-yellow { color: var(--warning); border-color: var(--warning); background: rgba(245,200,66,.08); }
+  .badge-red    { color: var(--accent);  border-color: var(--accent);  background: rgba(232,49,74,.08); }
+
+  /* ── SECTIONS ── */
+  section {
+    margin-bottom: 80px;
+    scroll-margin-top: 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-number {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    opacity: .6;
+  }
+  h2 {
+    font-family: var(--head);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--fg);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  h3 {
+    font-family: var(--head);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--fg);
+    margin: 36px 0 14px;
+  }
+  h3.sub-head {
+    color: var(--accent2);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-family: var(--mono);
+    margin: 28px 0 12px;
+    opacity: .9;
+  }
+
+  p { color: var(--muted); margin-bottom: 14px; }
+  p strong { color: var(--fg); font-weight: 500; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent2);
+  }
+  .card.success::before { background: var(--success); }
+  .card.warn::before    { background: var(--warning); }
+  .card.danger::before  { background: var(--error); }
+  .card.accent::before  { background: var(--accent); }
+  .card-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--fg);
+    margin-bottom: 8px;
+    letter-spacing: .05em;
+  }
+  .card p { margin-bottom: 0; }
+
+  /* ── RELEASE ITEMS ── */
+  .release-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(42,42,80,.6);
+  }
+  .release-item:last-child { border-bottom: none; }
+  .ri-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 3px;
+    flex-shrink: 0;
+    min-width: 64px;
+    text-align: center;
+  }
+  .tag-new    { background: rgba(62,232,138,.15); color: var(--success); border: 1px solid rgba(62,232,138,.3); }
+  .tag-fix    { background: rgba(245,200,66,.12);  color: var(--warning);  border: 1px solid rgba(245,200,66,.3); }
+  .tag-improve{ background: rgba(94,62,194,.18);  color: #9d85f0;         border: 1px solid rgba(94,62,194,.4); }
+  .tag-change { background: rgba(232,49,74,.12);  color: var(--error);    border: 1px solid rgba(232,49,74,.3); }
+
+  .ri-content strong {
+    display: block;
+    color: var(--fg);
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-size: 14px;
+  }
+  .ri-content p { font-size: 13px; margin: 0; }
+
+  /* ── CODE ── */
+  code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: rgba(255,255,255,.05);
+    color: #a8d8ff;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+
+  pre {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    overflow-x: auto;
+    margin: 16px 0 24px;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    color: var(--fg);
+    line-height: 1.8;
+  }
+  .cm { color: var(--muted); }
+  .ck { color: #f5c842; }
+  .cv { color: #a8d8ff; }
+  .cs { color: var(--success); }
+
+  /* ── STEP LIST ── */
+  .step-list { counter-reset: steps; list-style: none; }
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 18px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .step-list li::before {
+    content: counter(steps);
+    background: var(--accent);
+    color: white;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-list li .step-body strong {
+    display: block;
+    color: var(--fg);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .step-list li .step-body p { font-size: 14px; margin: 0; }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 28px;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--panel);
+    color: var(--accent2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(42,42,80,.5);
+    color: var(--muted);
+    vertical-align: top;
+  }
+  td:first-child { color: var(--fg); font-family: var(--mono); font-size: 13px; }
+  tr:hover td { background: rgba(255,255,255,.02); }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin: 20px 0;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; line-height: 1.6; }
+  .callout p { margin: 0; font-size: 13.5px; }
+  .callout.tip   { border-left: 3px solid var(--success); }
+  .callout.warn  { border-left: 3px solid var(--warning); }
+  .callout.info  { border-left: 3px solid var(--accent2); }
+  .callout.danger{ border-left: 3px solid var(--error); }
+
+  /* ── GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* ── CHANGELOG TABLE ── */
+  .changelog-header {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px 10px 0 0;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: none;
+  }
+  .changelog-ver {
+    font-family: var(--mono);
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  .changelog-date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .changelog-body {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0 0 10px 10px;
+    padding: 8px 24px 16px;
+    margin-bottom: 28px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    nav { display: none !important; }
+    main { margin-left: 0; padding: 20px 40px; }
+    .hero h1 { font-size: 36px; }
+    body::before { display: none; }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero { animation: fadeUp .6s ease both; }
+  section { animation: fadeUp .5s ease both; }
+  section:nth-child(2) { animation-delay: .05s; }
+  section:nth-child(3) { animation-delay: .1s; }
+  section:nth-child(4) { animation-delay: .15s; }
+  section:nth-child(5) { animation-delay: .2s; }
+
+  /* ── DIVIDER ── */
+  hr.fancy {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 48px 0;
+  }
+
+  /* ── SHORTCUT KEY ── */
+  .key {
+    display: inline-block;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg);
+  }
+
+  /* ── FEATURE GRID ── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 18px 16px;
+    transition: border-color .2s;
+  }
+  .feature-item:hover { border-color: var(--accent2); }
+  .feature-icon { font-size: 22px; margin-bottom: 10px; }
+  .feature-name {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg);
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .feature-desc { font-size: 12.5px; color: var(--muted); }
+
+</style>
+</head>
+<body>
+
+<!-- ────────────────────────────── SIDEBAR ──────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    <span class="logo-text">⬦ Roblox Downloader</span>
+    <span class="logo-ver">v1.1.0</span>
+  </div>
+
+  <div class="nav-section">Release Notes</div>
+  <a href="#changelog">Changelog</a>
+  <a href="#whats-new">What's New</a>
+  <a href="#requirements">System Requirements</a>
+
+  <div class="nav-section">User Guide</div>
+  <a href="#quickstart">Quick Start</a>
+  <a href="#install-guide">Installation Guide</a>
+  <a href="#ui-overview">Interface Overview</a>
+  <a href="#version-hash">Version Hash</a>
+  <a href="#history">Installation History</a>
+  <a href="#music">Background Music</a>
+  <a href="#troubleshoot">Troubleshooting</a>
+  <a href="#faq">FAQ</a>
+
+  <div class="nav-bottom">
+    Docs build: 2025<br>
+    Python 3.8+ · Windows 10+
+  </div>
+</nav>
+
+<!-- ──────────────────────────── MAIN CONTENT ───────────────────────────── -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">Documentation · Release Notes + User Guide</p>
+    <h1>Roblox Version<br><span>Downloader</span></h1>
+    <p class="hero-sub">A complete tool for downloading and installing Roblox Player from the official CDN — supports version selection, smart caching, and an intuitive interface.</p>
+    <div class="badge-row">
+      <span class="badge badge-green">● Stable v1.1.0</span>
+      <span class="badge badge-purple">Python 3.8+</span>
+      <span class="badge badge-yellow">Windows 10 / 11</span>
+      <span class="badge badge-red">Tkinter · requests</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       PART 1 — RELEASE NOTES
+       ══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="changelog">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>Changelog</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- v1.1.0 -->
+    <div class="changelog-header">
+      <span class="changelog-ver">v1.1.0</span>
+      <span class="changelog-date">Latest stable</span>
+    </div>
+    <div class="changelog-body">
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Multi-CDN Fallback &amp; Auto-Selection</strong>
+          <p>Automatically checks 5 CDN endpoints (setup.rbxcdn.com, setup-ak, setup-cf, cachefly, s3.amazonaws.com) and selects the server with the lowest latency to begin downloading.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Dual Progress Bar</strong>
+          <p>Two progress bars: the red bar shows the overall progress of the entire process; the purple bar tracks each package being downloaded in real time.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Speed &amp; ETA Display</strong>
+          <p>Shows download speed (B/s → KB/s → MB/s) and estimated time remaining (ETA), updated every 400ms.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>"Latest" Button — Auto-fetch Version</strong>
+          <p>Queries the <code>clientsettingscdn.roblox.com</code> API to automatically fill in the hash of the latest Roblox Player version — no manual searching required.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Installation History (up to 20 entries)</strong>
+          <p>Stores the 20 most recently installed versions in <code>download_history.json</code>. Allows re-downloading or opening the folder with a single click.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>roblox:// Protocol Registration (Windows)</strong>
+          <p>Automatically writes registry keys at <code>HKCU\Software\Classes\roblox</code> and <code>roblox-player</code> to associate the URL protocol with the installed RobloxPlayerBeta.exe.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>WebView2 Runtime Installer</strong>
+          <p>When the <code>WebView2RuntimeInstaller.zip</code> package is present in the manifest, the installer is automatically extracted and run silently — no manual steps required.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Integrated Background Music (pygame)</strong>
+          <p>Supports background music playback from <code>sound/music.mp3</code> at 60% volume. A 🎵/🔇 button to toggle on/off during installation. pygame is optional.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Smart Cache with MD5 Verification</strong>
+          <p>Checks the MD5 checksum of cached files before downloading. If matched — skip re-download. If corrupted — delete and re-download. Significantly saves bandwidth.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Complete PACKAGE_MAP with 23 Packages</strong>
+          <p>Extraction table accurate to Bloxstrap / the original bootstrapper, ensuring correct directory structure for <code>content/</code>, <code>PlatformContent/</code>, and <code>ExtraContent/</code>.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Detailed Network Error Handling</strong>
+          <p>Each error type is handled separately: ConnectionError, Timeout, PermissionError, 404 Not Found, MD5 mismatch — each with a clear error message and suggested resolution.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Complete Dark Theme UI</strong>
+          <p>Fully redesigned UI with a dark color palette (#0d0d1a base), red/purple accents, separate-colored progress bars, a scrollable log window — responsive at 720×800.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-fix">FIX</span>
+        <div class="ri-content">
+          <strong>Thread-safe UI Callbacks</strong>
+          <p>All UI updates from the worker thread are routed through <code>root.after(0, ...)</code> to prevent race conditions and Tkinter crashes on Windows.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-fix">FIX</span>
+        <div class="ri-content">
+          <strong>Safe Exit While Installing</strong>
+          <p>When closing the window during installation, a confirmation prompt appears before cancelling the worker thread and releasing the pygame mixer.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- v1.0.0 -->
+    <div class="changelog-header">
+      <span class="changelog-ver">v1.0.0</span>
+      <span class="changelog-date">Initial release</span>
+    </div>
+    <div class="changelog-body">
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>First Release</strong>
+          <p>Download and extract Roblox Player packages from CDN by version hash. Basic Tkinter interface, supports sequential downloading and MD5 verification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S NEW -->
+  <section id="whats-new">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>What's New</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-name">Multi-CDN</div>
+        <div class="feature-desc">5 CDN endpoints, automatically selects the fastest based on real-time latency</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📊</div>
+        <div class="feature-name">Real-time Stats</div>
+        <div class="feature-desc">Download speed + ETA updated continuously during download</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">💾</div>
+        <div class="feature-name">Smart Cache</div>
+        <div class="feature-desc">MD5 cache — skips re-downloading packages that are already present and intact</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-name">URL Protocol</div>
+        <div class="feature-desc">Auto-registers roblox:// in the registry to launch games directly from the browser</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🕐</div>
+        <div class="feature-name">20-entry History</div>
+        <div class="feature-desc">Save &amp; reinstall any previously installed version with just 1 click</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎵</div>
+        <div class="feature-name">Background Music</div>
+        <div class="feature-desc">Plays MP3 in the background during installation, toggle instantly, 60% volume</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section id="requirements">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>System Requirements</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Component</th><th>Minimum</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>OS</td><td>Windows 10 (64-bit)</td><td>Windows 11 recommended. Linux/macOS partially supported (no winreg)</td></tr>
+        <tr><td>Python</td><td>3.8+</td><td>3.10 or higher recommended</td></tr>
+        <tr><td>requests</td><td>≥ 2.28</td><td><code>pip install requests</code> — required</td></tr>
+        <tr><td>pygame</td><td>≥ 2.0</td><td><code>pip install pygame</code> — optional (background music)</td></tr>
+        <tr><td>tkinter</td><td>Bundled with Python</td><td>Usually pre-installed; verify with <code>python -m tkinter</code></td></tr>
+        <tr><td>RAM</td><td>512 MB</td><td>Extracting large packages requires additional temporary memory</td></tr>
+        <tr><td>Disk Space</td><td>~2.5 GB</td><td>~1.5 GB installed files + ~1 GB download cache</td></tr>
+        <tr><td>Network</td><td>5+ Mbps</td><td>Download still works on slower connections, but will be slower</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <p>The application requires write access to <code>%LOCALAPPDATA%\Roblox\</code> and registry write access to <code>HKCU</code>. For most standard Windows users, running as Administrator is not required.</p>
+    </div>
+  </section>
+
+  <hr class="fancy">
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       PART 2 — USER GUIDE
+       ══════════════════════════════════════════════════════════════════════ -->
+
+  <section id="quickstart">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Quick Start</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>Just 3 steps to install any version of Roblox Player:</p>
+
+    <pre><code><span class="cm"># 1. Install required libraries</span>
+<span class="ck">pip</span> <span class="cv">install</span> requests pygame
+
+<span class="cm"># 2. Run the application</span>
+<span class="ck">python</span> <span class="cv">RobloxVersionDownloader.py</span>
+
+<span class="cm"># 3. Click "Latest" to fetch the hash, then click "⬇ INSTALL ROBLOX PLAYER"</span></code></pre>
+
+    <div class="callout tip">
+      <span class="callout-icon">✅</span>
+      <p>If you just want to install the <em>latest</em> version, click the <strong>"Latest"</strong> button — the app will automatically fill in the hash and begin installation without needing to find the hash manually.</p>
+    </div>
+  </section>
+
+  <!-- INSTALL GUIDE -->
+  <section id="install-guide">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>Detailed Installation Guide</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <h3 class="sub-head">Installing Python &amp; Libraries</h3>
+
+    <ol class="step-list">
+      <li>
+        <div class="step-body">
+          <strong>Download Python 3.10+</strong>
+          <p>Download from <code>python.org/downloads</code>. During installation, check ✅ <strong>"Add Python to PATH"</strong>.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Open Command Prompt / PowerShell</strong>
+          <p>Press <span class="key">Win</span> + <span class="key">R</span> → type <code>cmd</code> → Enter.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Install required libraries</strong>
+          <p>Run: <code>pip install requests</code><br>For background music: <code>pip install pygame</code></p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Run the application</strong>
+          <p>Navigate to the folder containing the file and run: <code>python RobloxVersionDownloader.py</code></p>
+        </div>
+      </li>
+    </ol>
+
+    <h3 class="sub-head">Installing Roblox Player</h3>
+
+    <ol class="step-list">
+      <li>
+        <div class="step-body">
+          <strong>Select a Version Hash</strong>
+          <p>Click <strong>"Latest"</strong> to automatically fetch the latest hash, or manually enter a specific hash in the input field.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Confirm the installation directory</strong>
+          <p>Default: <code>%LOCALAPPDATA%\Roblox\Versions\</code>. Click <strong>"📁 Browse..."</strong> to change it if needed.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Start installation</strong>
+          <p>Click the red <strong>"⬇ INSTALL ROBLOX PLAYER"</strong> button. The app will check CDNs, download the manifest, and begin downloading packages.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Wait for completion</strong>
+          <p>Monitor the progress bars and log. Once finished, a dialog will ask if you want to open the installation folder.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="callout info">
+      <span class="callout-icon">ℹ️</span>
+      <p>The <strong>cache</strong> folder (<code>%LOCALAPPDATA%\Roblox\Downloads\</code>) stores downloaded .zip files. Reinstalling the same version will use the cache — no need to re-download from CDN, saving time and bandwidth.</p>
+    </div>
+  </section>
+
+  <!-- UI OVERVIEW -->
+  <section id="ui-overview">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>Interface Overview</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>UI Element</th><th>Function</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Version Hash field</td><td>Enter the hash of the version to install (format: <code>version-xxxxxxxxxxxxxxxx</code>)</td></tr>
+        <tr><td>"Latest" button</td><td>Calls the Roblox API to retrieve the hash of the latest Windows Player version</td></tr>
+        <tr><td>"✕" button</td><td>Quickly clears the content of the hash field</td></tr>
+        <tr><td>Preview line</td><td>Shows the manifest URL that will be accessed based on the entered hash</td></tr>
+        <tr><td>Versions folder</td><td>Root folder containing Roblox versions. Each version creates a subdirectory</td></tr>
+        <tr><td>Red progress bar</td><td>Total % downloaded / installed across the entire process</td></tr>
+        <tr><td>Purple progress bar</td><td>% of the package currently being downloaded</td></tr>
+        <tr><td>% · Speed · ETA</td><td>Overall percentage, speed (KB/s or MB/s), and estimated time remaining</td></tr>
+        <tr><td>Current package name</td><td>Name of the .zip file currently being processed</td></tr>
+        <tr><td>Log window</td><td>Real-time log with status colors (yellow=in progress, green=OK, red=error)</td></tr>
+        <tr><td>"⬇ INSTALL" button</td><td>Starts the download and installation process</td></tr>
+        <tr><td>"✕ Cancel" button</td><td>Stops the running installation process (active only during installation)</td></tr>
+        <tr><td>Installation history</td><td>6 most recent versions — click ↺ to fill in the hash again, 📂 to open the folder</td></tr>
+        <tr><td>🎵 / 🔇 button</td><td>Toggle background music on / off (top-right corner of the header)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- VERSION HASH -->
+  <section id="version-hash">
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2>Version Hash</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>A version hash is the unique identifier of each Roblox Player release. The application uses this hash to access the correct manifest and download the correct set of installation files.</p>
+
+    <h3 class="sub-head">Valid Format</h3>
+
+    <div class="grid-2">
+      <div class="card success">
+        <div class="card-title">✅ VALID</div>
+        <p><code>version-eb4648e9148d440c</code><br><code>eb4648e9148d440c</code> (prefix auto-added)<br>16 hex characters after the <code>-</code></p>
+      </div>
+      <div class="card danger">
+        <div class="card-title">❌ INVALID</div>
+        <p><code>version-abc123</code> (fewer than 16 characters)<br><code>1.2.3.4567</code> (version number format)<br>Hash containing non-hex characters</p>
+      </div>
+    </div>
+
+    <h3 class="sub-head">How to Find a Hash</h3>
+
+    <ol class="step-list">
+      <li>
+        <div class="step-body">
+          <strong>Fastest way — "Latest" button</strong>
+          <p>Click the button in the app. The Roblox API returns the hash automatically.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Directly via Roblox API</strong>
+          <p>Visit: <code>https://clientsettingscdn.roblox.com/v2/client-version/WindowsPlayer</code> — the <code>clientVersionUpload</code> field contains the hash.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>From an existing Roblox installation</strong>
+          <p>Open <code>%LOCALAPPDATA%\Roblox\Versions\</code> and look at the subdirectory names — those are the hashes.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>From RBXVersions / Bloxstrap history</strong>
+          <p>Community sites maintain a history of hashes by release date.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>Installation History</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>Each successful installation saves its information to a <code>download_history.json</code> file in the same directory as the script.</p>
+
+    <table>
+      <thead>
+        <tr><th>Button</th><th>Function</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>↺ (Reload)</td><td>Fills the hash into the input field to reinstall the same version</td></tr>
+        <tr><td>📂 (Open folder)</td><td>Opens the installation folder for that version in File Explorer</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <span class="callout-icon">ℹ️</span>
+      <p>History stores a maximum of <strong>20 entries</strong>. The most recent entry is always at the top. The interface displays the <strong>6 most recent</strong> entries. You can view all entries in the JSON file.</p>
+    </div>
+  </section>
+
+  <!-- MUSIC -->
+  <section id="music">
+    <div class="section-header">
+      <span class="section-number">09</span>
+      <h2>Background Music</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>The application supports background music playback during downloads, requiring the <strong>pygame</strong> library and an MP3 audio file.</p>
+
+    <h3 class="sub-head">Folder Structure</h3>
+
+    <pre><code><span class="cv">RobloxVersionDownloader.py</span>
+<span class="cv">sound/</span>
+  └── <span class="cs">music.mp3</span>          <span class="cm">← place your music file here</span>
+<span class="cv">download_history.json</span>
+<span class="cv">icon.ico</span>               <span class="cm">← optional, window icon</span></code></pre>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Enable background music</div>
+        <p>Place an MP3 file at <code>sound/music.mp3</code> and install <code>pip install pygame</code>. Music plays automatically when the application starts.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Toggle while in use</div>
+        <p>Click the 🎵 / 🔇 button in the top-right corner of the header to toggle. Default volume is 60%, adjustable in the code (<code>set_volume(0.60)</code>).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TROUBLESHOOT -->
+  <section id="troubleshoot">
+    <div class="section-header">
+      <span class="section-number">10</span>
+      <h2>Troubleshooting</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <h3>"Version Not Found" — Hash does not exist on CDN</h3>
+    <div class="card warn">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>The hash is incorrect or the version is too old and has been removed from the CDN. Double-check the 16-character hex hash. Use the <strong>"Latest"</strong> button to get a valid hash.</p>
+    </div>
+
+    <h3>"Connection Lost" — ConnectionError</h3>
+    <div class="card warn">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>Check your Internet connection. Firewalls or VPNs sometimes block Roblox CDNs. Try disabling your VPN or changing DNS (8.8.8.8). The application automatically tries CDN fallbacks.</p>
+    </div>
+
+    <h3>"Checksum Failed" — MD5 mismatch</h3>
+    <div class="card warn">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>The downloaded file was corrupted partway through. The app automatically deletes the corrupted cache file. Run the installation again — the file will be re-downloaded from scratch.</p>
+    </div>
+
+    <h3>"Write Permission Error" — PermissionError</h3>
+    <div class="card warn">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>The installation directory has restricted write permissions. Try running the Command Prompt / application <strong>as Administrator</strong>. Or select a different directory where the user has write access.</p>
+    </div>
+
+    <h3>Music does not play — pygame error</h3>
+    <div class="card">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>Check: 1) Has <code>pip install pygame</code> been run? 2) Does <code>sound/music.mp3</code> exist? 3) Is the audio driver working normally? Music is <em>optional</em> and does not affect installation.</p>
+    </div>
+
+    <h3>Window does not appear / tkinter error</h3>
+    <div class="card danger">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>Python installed from the Microsoft Store sometimes lacks tkinter. Uninstall and reinstall Python from <strong>python.org</strong>. Verify with: <code>python -m tkinter</code> — if a test window opens, it's working.</p>
+    </div>
+
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <p>When encountering an error, read the content in the <strong>Log window</strong> — each error message includes a description of the cause and a suggested resolution.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-header">
+      <span class="section-number">11</span>
+      <h2>Frequently Asked Questions</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <h3>Is the application safe?</h3>
+    <p>The application <strong>only downloads files from Roblox's official CDN</strong> (<code>setup.rbxcdn.com</code> and its subdomains). There is no hidden code and no data is sent to any external server. You can read the entire Python source code.</p>
+
+    <h3>How is this different from a normal Roblox installation?</h3>
+    <p>Roblox's official installer always installs the latest version and does not allow choosing a specific version. This tool allows you to install <strong>any version</strong> by hash — useful when you want to roll back or test a specific build.</p>
+
+    <h3>Where is the cache? Can I delete it?</h3>
+    <p>Cache is located at <code>%LOCALAPPDATA%\Roblox\Downloads\</code>. It can be safely deleted when no longer needed. Reinstalling will re-download files from the CDN.</p>
+
+    <h3>Can multiple versions be installed at the same time?</h3>
+    <p>Yes! Each version creates its own subdirectory named after its hash. Install version A, then change the hash to B and install again — both versions coexist side by side under <code>Versions/</code>.</p>
+
+    <h3>The roblox:// protocol doesn't work after installation?</h3>
+    <p>The registry key is written to <code>HKCU\Software\Classes\roblox</code>. Restart your browser after installation. If it still doesn't work, verify that <code>RobloxPlayerBeta.exe</code> exists in the installation folder.</p>
+
+    <h3>Does it work on Mac / Linux?</h3>
+    <p>Technically, the download and extraction portions work cross-platform. However, <strong>Roblox's .exe files only run on Windows</strong>, so using this on macOS/Linux has no practical purpose.</p>
+
+    <hr class="fancy">
+
+    <div class="card accent" style="text-align:center; padding: 32px;">
+      <div class="card-title" style="font-size:15px; margin-bottom:8px;">⬦ ROBLOX VERSION DOWNLOADER v1.1.0</div>
+      <p style="color:var(--muted); font-family:var(--mono); font-size:12px;">
+        Documentation generated from source code &nbsp;·&nbsp; Python 3.8+ &nbsp;·&nbsp; MIT-style
+      </p>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], .hero');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.id;
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
