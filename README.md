@@ -27,20 +27,6 @@ A comprehensive tool to download and install Roblox Player directly from the off
 > Do not delete or move the `_internal/` folder as it contains the required runtime for the application.
 
 ---
-
-## 📂 Required Structure
-
-To function correctly, the application must maintain the following file structure:
-
-```plaintext
-RobloxVersionDownloader/
- ├── RobloxVersionDownloader.exe
- ├── _internal/        ← Required (build libraries)
- ├── sound/
- │    └── music.mp3    ← Optional
- └── download_history.json
- 
----
  
 ## 🛠 Troubleshooting
 - ❌ App won't start: Check if the _internal folder is missing or if your antivirus is blocking the execution.
