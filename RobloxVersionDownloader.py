@@ -1,3 +1,16 @@
+# ============================================================
+#  Project: Roblox Version Downloader
+#  File: RobloxVersionDownloader.py
+#  Author: HoangLong
+#
+#  Description:
+#  A complete tool for downloading and installing Roblox Player from the official CDN — supports version selection, smart caching, and an intuitive interface.
+#
+#  License:
+#  This file is part of a project licensed under the MIT License.
+#  Copyright (c) 2026 HoangLong
+# ============================================================
+
 import os, sys, json, time, hashlib, zipfile
 import threading, subprocess
 import tkinter as tk
