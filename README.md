@@ -48,4 +48,4 @@ A comprehensive tool to download and install Roblox Player directly from the off
 ## ⚖️ License
 
 - This project is licensed under the MIT License.
-- This software is free and should not be sold for profit.
+*Even though it’s under the MIT license, this software is meant for the community, so please don’t use it for personal gain or profit, okay?*
