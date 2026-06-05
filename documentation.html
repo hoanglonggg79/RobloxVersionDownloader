@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roblox Version Downloader — Docs v1.1.0</title>
+<title>Roblox Version Downloader — Docs v1.2.0</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
@@ -38,7 +38,6 @@
     overflow-x: hidden;
   }
 
-  /* ── NOISE OVERLAY ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -48,7 +47,6 @@
     opacity: .5;
   }
 
-  /* ── SIDEBAR NAV ── */
   nav {
     position: fixed;
     left: 0; top: 0; bottom: 0;
@@ -81,6 +79,18 @@
     font-size: 18px;
     color: var(--fg);
     font-weight: bold;
+  }
+  .nav-logo .logo-badge {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(94,62,194,.25);
+    color: #9d85f0;
+    border: 1px solid rgba(94,62,194,.4);
+    letter-spacing: .08em;
   }
 
   .nav-section {
@@ -125,7 +135,6 @@
     font-family: var(--mono);
   }
 
-  /* ── MAIN CONTENT ── */
   main {
     margin-left: 240px;
     padding: 60px 64px 120px;
@@ -134,7 +143,6 @@
     z-index: 1;
   }
 
-  /* ── HERO ── */
   .hero {
     padding: 48px 0 64px;
     border-bottom: 1px solid var(--border);
@@ -189,7 +197,6 @@
   .badge-yellow { color: var(--warning); border-color: var(--warning); background: rgba(245,200,66,.08); }
   .badge-red    { color: var(--accent);  border-color: var(--accent);  background: rgba(232,49,74,.08); }
 
-  /* ── SECTIONS ── */
   section {
     margin-bottom: 80px;
     scroll-margin-top: 40px;
@@ -240,7 +247,6 @@
   p { color: var(--muted); margin-bottom: 14px; }
   p strong { color: var(--fg); font-weight: 500; }
 
-  /* ── CARDS ── */
   .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -271,7 +277,6 @@
   }
   .card p { margin-bottom: 0; }
 
-  /* ── RELEASE ITEMS ── */
   .release-item {
     display: flex;
     gap: 16px;
@@ -305,7 +310,6 @@
   }
   .ri-content p { font-size: 13px; margin: 0; }
 
-  /* ── CODE ── */
   code {
     font-family: var(--mono);
     font-size: 12px;
@@ -337,7 +341,6 @@
   .cv { color: #a8d8ff; }
   .cs { color: var(--success); }
 
-  /* ── STEP LIST ── */
   .step-list { counter-reset: steps; list-style: none; }
   .step-list li {
     counter-increment: steps;
@@ -370,7 +373,6 @@
   }
   .step-list li .step-body p { font-size: 14px; margin: 0; }
 
-  /* ── TABLE ── */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -397,7 +399,6 @@
   td:first-child { color: var(--fg); font-family: var(--mono); font-size: 13px; }
   tr:hover td { background: rgba(255,255,255,.02); }
 
-  /* ── CALLOUT ── */
   .callout {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -415,7 +416,6 @@
   .callout.info  { border-left: 3px solid var(--accent2); }
   .callout.danger{ border-left: 3px solid var(--error); }
 
-  /* ── GRID ── */
   .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -424,7 +424,6 @@
   }
   @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
 
-  /* ── CHANGELOG TABLE ── */
   .changelog-header {
     background: var(--panel);
     border: 1px solid var(--border);
@@ -454,7 +453,6 @@
     margin-bottom: 28px;
   }
 
-  /* ── PRINT ── */
   @media print {
     nav { display: none !important; }
     main { margin-left: 0; padding: 20px 40px; }
@@ -462,13 +460,11 @@
     body::before { display: none; }
   }
 
-  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -480,7 +476,6 @@
   section:nth-child(4) { animation-delay: .15s; }
   section:nth-child(5) { animation-delay: .2s; }
 
-  /* ── DIVIDER ── */
   hr.fancy {
     border: none;
     height: 1px;
@@ -488,7 +483,6 @@
     margin: 48px 0;
   }
 
-  /* ── SHORTCUT KEY ── */
   .key {
     display: inline-block;
     background: var(--panel);
@@ -501,7 +495,6 @@
     color: var(--fg);
   }
 
-  /* ── FEATURE GRID ── */
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -527,6 +520,27 @@
   }
   .feature-desc { font-size: 12.5px; color: var(--muted); }
 
+  /* ── NEW in v1.2: migration notice banner ── */
+  .migration-banner {
+    background: linear-gradient(135deg, rgba(94,62,194,.18), rgba(232,49,74,.10));
+    border: 1px solid rgba(94,62,194,.4);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .migration-banner .mb-icon { font-size: 26px; flex-shrink: 0; }
+  .migration-banner .mb-title {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: bold;
+    color: #9d85f0;
+    margin-bottom: 6px;
+    letter-spacing: .06em;
+  }
+  .migration-banner p { margin: 0; font-size: 13.5px; }
 </style>
 </head>
 <body>
@@ -535,7 +549,8 @@
 <nav>
   <div class="nav-logo">
     <span class="logo-text">⬦ Roblox Downloader</span>
-    <span class="logo-ver">v1.1.0</span>
+    <span class="logo-ver">v1.2.0</span>
+    <span class="logo-badge">PySide6</span>
   </div>
 
   <div class="nav-section">Release Notes</div>
@@ -548,6 +563,7 @@
   <a href="#install-guide">Installation Guide</a>
   <a href="#ui-overview">Interface Overview</a>
   <a href="#version-hash">Version Hash</a>
+  <a href="#options">Install Options</a>
   <a href="#history">Installation History</a>
   <a href="#music">Background Music</a>
   <a href="#troubleshoot">Troubleshooting</a>
@@ -566,12 +582,12 @@
   <div class="hero">
     <p class="hero-eyebrow">Documentation · Release Notes + User Guide</p>
     <h1>Roblox Version<br><span>Downloader</span></h1>
-    <p class="hero-sub">A complete tool for downloading and installing Roblox Player from the official CDN — supports version selection, smart caching, and an intuitive interface.</p>
+    <p class="hero-sub">A complete tool for downloading and installing Roblox Player from the official CDN — supports version selection, smart caching, resume downloads, and a modern PySide6 interface.</p>
     <div class="badge-row">
-      <span class="badge badge-green">● Stable v1.1.0</span>
-      <span class="badge badge-purple">Python 3.8+</span>
+      <span class="badge badge-green">● Stable v1.2.0</span>
+      <span class="badge badge-purple">PySide6 · Python 3.8+</span>
       <span class="badge badge-yellow">Windows 10 / 11</span>
-      <span class="badge badge-red">Tkinter · requests</span>
+      <span class="badge badge-red">requests · pygame (opt)</span>
     </div>
   </div>
 
@@ -586,108 +602,109 @@
       <div class="section-line"></div>
     </div>
 
+    <!-- v1.2.0 -->
+    <div class="changelog-header">
+      <span class="changelog-ver">v1.2.0</span>
+      <span class="changelog-date">Latest stable</span>
+    </div>
+    <div class="changelog-body">
+      <div class="release-item">
+        <span class="ri-tag tag-change">CHANGE</span>
+        <div class="ri-content">
+          <strong>Migrated GUI from Tkinter → PySide6</strong>
+          <p>The entire interface has been rebuilt using PySide6 (Qt6). This brings native-quality widgets, proper thread safety via Qt signals/slots, smoother scrollbars, and consistent rendering across all Windows versions. <code>pip install PySide6</code> is now required instead of tkinter.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>"Previous Versions" Button — Browse Version History</strong>
+          <p>New <strong>Previous</strong> button next to the hash field. Fetches a list of recent versions from the <strong>WEAO API</strong> (<code>https://weao.xyz/api/versions/past</code>) with header <code>User-Agent: WEAO-3PService</code>. If the API is unavailable, falls back to parsing <code>DeployHistory.txt</code> from the CDN (up to 30 hashes). A popup dialog lets you pick and load any version with one click.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Desktop Shortcut Creation (opt-in)</strong>
+          <p>A new checkbox <em>"Create Desktop Shortcut after install"</em> places a <code>.lnk</code> shortcut for the installed <code>RobloxPlayerBeta.exe</code> on the Desktop. Uses <code>winshell</code> if installed, otherwise falls back to a PowerShell script automatically.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Delete Installed Version from Disk</strong>
+          <p>History rows now include a 🗑 button. Clicking it offers to remove the entry from history only, or to also <strong>delete the installation folder from disk</strong> (via <code>shutil.rmtree</code>).</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-new">NEW</span>
+        <div class="ri-content">
+          <strong>Resumable Downloads (HTTP Range)</strong>
+          <p>If a partial <code>.part</code> file exists from a previous interrupted download, the next run sends a <code>Range: bytes=N-</code> header to resume from where it left off, saving bandwidth. Handles HTTP 416 (range not satisfiable) by automatically restarting from byte 0.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Concurrent CDN Probing</strong>
+          <p>CDN selection now uses a <code>ThreadPoolExecutor</code> to probe all 5 endpoints simultaneously and pick the one that responds first. Previously probed sequentially, which added noticeable delay on startup.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Options Panel — Three Configurable Checkboxes</strong>
+          <p>The Options section now exposes three independent settings: (1) Register <code>roblox://</code> protocol in Registry, (2) Install WebView2 Runtime silently, (3) Create Desktop Shortcut. All are remembered per-session.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-improve">IMPROVE</span>
+        <div class="ri-content">
+          <strong>Thread-safe Signals via Qt Signals/Slots</strong>
+          <p>Worker → UI communication now uses Qt's <code>Signal</code> / <code>QThread</code> mechanism instead of <code>root.after()</code>. This is the proper cross-thread update pattern for Qt and eliminates the risk of UI freeze or crash on rapid updates.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-fix">FIX</span>
+        <div class="ri-content">
+          <strong>Unsafe Directory Guard Extended</strong>
+          <p>The safety check now correctly allows subdirectories of <code>C:\Program Files\Roblox</code> while still blocking the root of <code>C:\Windows</code>, <code>C:\</code>, <code>/</code>, <code>/usr</code>, <code>/etc</code>, and other OS directories.</p>
+        </div>
+      </div>
+      <div class="release-item">
+        <span class="ri-tag tag-fix">FIX</span>
+        <div class="ri-content">
+          <strong>History Delete Shows Correct Prompt</strong>
+          <p>If the installation folder no longer exists on disk, only a simple "Remove from history?" prompt is shown — no longer incorrectly asks about disk deletion for a folder that is already gone.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- v1.1.0 -->
     <div class="changelog-header">
       <span class="changelog-ver">v1.1.0</span>
-      <span class="changelog-date">Latest stable</span>
+      <span class="changelog-date">Previous stable</span>
     </div>
     <div class="changelog-body">
       <div class="release-item">
         <span class="ri-tag tag-new">NEW</span>
         <div class="ri-content">
           <strong>Multi-CDN Fallback &amp; Auto-Selection</strong>
-          <p>Automatically checks 5 CDN endpoints (setup.rbxcdn.com, setup-ak, setup-cf, cachefly, s3.amazonaws.com) and selects the server with the lowest latency to begin downloading.</p>
+          <p>Automatically checks 5 CDN endpoints and selects the server with the lowest latency to begin downloading.</p>
         </div>
       </div>
       <div class="release-item">
         <span class="ri-tag tag-new">NEW</span>
         <div class="ri-content">
-          <strong>Dual Progress Bar</strong>
-          <p>Two progress bars: the red bar shows the overall progress of the entire process; the purple bar tracks each package being downloaded in real time.</p>
+          <strong>Dual Progress Bar + Speed &amp; ETA Display</strong>
+          <p>Red bar for overall progress, purple bar per-package. Download speed and ETA updated every 400ms.</p>
         </div>
       </div>
       <div class="release-item">
         <span class="ri-tag tag-new">NEW</span>
         <div class="ri-content">
-          <strong>Speed &amp; ETA Display</strong>
-          <p>Shows download speed (B/s → KB/s → MB/s) and estimated time remaining (ETA), updated every 400ms.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-new">NEW</span>
-        <div class="ri-content">
-          <strong>"Latest" Button — Auto-fetch Version</strong>
-          <p>Queries the <code>clientsettingscdn.roblox.com</code> API to automatically fill in the hash of the latest Roblox Player version — no manual searching required.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-new">NEW</span>
-        <div class="ri-content">
-          <strong>Installation History (up to 20 entries)</strong>
-          <p>Stores the 20 most recently installed versions in <code>download_history.json</code>. Allows re-downloading or opening the folder with a single click.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-new">NEW</span>
-        <div class="ri-content">
-          <strong>roblox:// Protocol Registration (Windows)</strong>
-          <p>Automatically writes registry keys at <code>HKCU\Software\Classes\roblox</code> and <code>roblox-player</code> to associate the URL protocol with the installed RobloxPlayerBeta.exe.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-new">NEW</span>
-        <div class="ri-content">
-          <strong>WebView2 Runtime Installer</strong>
-          <p>When the <code>WebView2RuntimeInstaller.zip</code> package is present in the manifest, the installer is automatically extracted and run silently — no manual steps required.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-new">NEW</span>
-        <div class="ri-content">
-          <strong>Integrated Background Music (pygame)</strong>
-          <p>Supports background music playback from <code>sound/music.mp3</code> at 60% volume. A 🎵/🔇 button to toggle on/off during installation. pygame is optional.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-improve">IMPROVE</span>
-        <div class="ri-content">
-          <strong>Smart Cache with MD5 Verification</strong>
-          <p>Checks the MD5 checksum of cached files before downloading. If matched — skip re-download. If corrupted — delete and re-download. Significantly saves bandwidth.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-improve">IMPROVE</span>
-        <div class="ri-content">
-          <strong>Complete PACKAGE_MAP with 23 Packages</strong>
-          <p>Extraction table accurate to Bloxstrap / the original bootstrapper, ensuring correct directory structure for <code>content/</code>, <code>PlatformContent/</code>, and <code>ExtraContent/</code>.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-improve">IMPROVE</span>
-        <div class="ri-content">
-          <strong>Detailed Network Error Handling</strong>
-          <p>Each error type is handled separately: ConnectionError, Timeout, PermissionError, 404 Not Found, MD5 mismatch — each with a clear error message and suggested resolution.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-improve">IMPROVE</span>
-        <div class="ri-content">
-          <strong>Complete Dark Theme UI</strong>
-          <p>Fully redesigned UI with a dark color palette (#0d0d1a base), red/purple accents, separate-colored progress bars, a scrollable log window — responsive at 720×800.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-fix">FIX</span>
-        <div class="ri-content">
-          <strong>Thread-safe UI Callbacks</strong>
-          <p>All UI updates from the worker thread are routed through <code>root.after(0, ...)</code> to prevent race conditions and Tkinter crashes on Windows.</p>
-        </div>
-      </div>
-      <div class="release-item">
-        <span class="ri-tag tag-fix">FIX</span>
-        <div class="ri-content">
-          <strong>Safe Exit While Installing</strong>
-          <p>When closing the window during installation, a confirmation prompt appears before cancelling the worker thread and releasing the pygame mixer.</p>
+          <strong>"Latest" Button, Installation History, roblox:// Protocol, WebView2, Background Music</strong>
+          <p>All core features introduced in v1.1.0 — see previous documentation for full detail.</p>
         </div>
       </div>
     </div>
@@ -702,7 +719,7 @@
         <span class="ri-tag tag-new">NEW</span>
         <div class="ri-content">
           <strong>First Release</strong>
-          <p>Download and extract Roblox Player packages from CDN by version hash. Basic Tkinter interface, supports sequential downloading and MD5 verification.</p>
+          <p>Download and extract Roblox Player packages from CDN by version hash. Basic Tkinter interface, sequential downloading, MD5 verification.</p>
         </div>
       </div>
     </div>
@@ -712,40 +729,45 @@
   <section id="whats-new">
     <div class="section-header">
       <span class="section-number">02</span>
-      <h2>What's New</h2>
+      <h2>What's New in v1.2.0</h2>
       <div class="section-line"></div>
     </div>
 
     <div class="feature-grid">
       <div class="feature-item">
-        <div class="feature-icon">🌐</div>
-        <div class="feature-name">Multi-CDN</div>
-        <div class="feature-desc">5 CDN endpoints, automatically selects the fastest based on real-time latency</div>
+        <div class="feature-icon">🖼️</div>
+        <div class="feature-name">PySide6 GUI</div>
+        <div class="feature-desc">Rebuilt with Qt6 — native widgets, smoother animations, proper thread-safe signals</div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">📊</div>
-        <div class="feature-name">Real-time Stats</div>
-        <div class="feature-desc">Download speed + ETA updated continuously during download</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">💾</div>
-        <div class="feature-name">Smart Cache</div>
-        <div class="feature-desc">MD5 cache — skips re-downloading packages that are already present and intact</div>
+        <div class="feature-icon">📜</div>
+        <div class="feature-name">Previous Versions</div>
+        <div class="feature-desc">Browse and load older Roblox versions from rollback API or DeployHistory.txt</div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">🔗</div>
-        <div class="feature-name">URL Protocol</div>
-        <div class="feature-desc">Auto-registers roblox:// in the registry to launch games directly from the browser</div>
+        <div class="feature-name">Desktop Shortcut</div>
+        <div class="feature-desc">Auto-creates a .lnk shortcut on Desktop after install (opt-in checkbox)</div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">🕐</div>
-        <div class="feature-name">20-entry History</div>
-        <div class="feature-desc">Save &amp; reinstall any previously installed version with just 1 click</div>
+        <div class="feature-icon">⏸️</div>
+        <div class="feature-name">Resume Downloads</div>
+        <div class="feature-desc">HTTP Range resumption — picks up interrupted downloads without starting over</div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">🎵</div>
-        <div class="feature-name">Background Music</div>
-        <div class="feature-desc">Plays MP3 in the background during installation, toggle instantly, 60% volume</div>
+        <div class="feature-icon">🗑️</div>
+        <div class="feature-name">Delete from Disk</div>
+        <div class="feature-desc">Remove old installs directly from the history panel — no File Explorer needed</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔊</div>
+        <div class="feature-name">Volume Slider</div>
+        <div class="feature-desc">Adjust background music volume in real time via a slider in the header — no need to edit the source code</div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-name">Parallel CDN Probe</div>
+        <div class="feature-desc">All 5 CDNs probed concurrently — picks the fastest instantly instead of waiting sequentially</div>
       </div>
     </div>
   </section>
@@ -758,6 +780,14 @@
       <div class="section-line"></div>
     </div>
 
+    <div class="migration-banner">
+      <span class="mb-icon">🔄</span>
+      <div>
+        <div class="mb-title">Migrating from v1.1.0?</div>
+        <p><strong>tkinter is no longer used.</strong> Run <code>pip install PySide6</code> before launching v1.2.0. All other dependencies (requests, pygame) remain the same.</p>
+      </div>
+    </div>
+
     <table>
       <thead>
         <tr><th>Component</th><th>Minimum</th><th>Notes</th></tr>
@@ -765,12 +795,13 @@
       <tbody>
         <tr><td>OS</td><td>Windows 10 (64-bit)</td><td>Windows 11 recommended. Linux/macOS partially supported (no winreg)</td></tr>
         <tr><td>Python</td><td>3.8+</td><td>3.10 or higher recommended</td></tr>
+        <tr><td>PySide6</td><td>≥ 6.4</td><td><code>pip install PySide6</code> — <strong>required</strong> (replaces tkinter)</td></tr>
         <tr><td>requests</td><td>≥ 2.28</td><td><code>pip install requests</code> — required</td></tr>
         <tr><td>pygame</td><td>≥ 2.0</td><td><code>pip install pygame</code> — optional (background music)</td></tr>
-        <tr><td>tkinter</td><td>Bundled with Python</td><td>Usually pre-installed; verify with <code>python -m tkinter</code></td></tr>
+        <tr><td>winshell</td><td>any</td><td><code>pip install winshell</code> — optional (desktop shortcut; PowerShell fallback used if missing)</td></tr>
         <tr><td>RAM</td><td>512 MB</td><td>Extracting large packages requires additional temporary memory</td></tr>
         <tr><td>Disk Space</td><td>~2.5 GB</td><td>~1.5 GB installed files + ~1 GB download cache</td></tr>
-        <tr><td>Network</td><td>5+ Mbps</td><td>Download still works on slower connections, but will be slower</td></tr>
+        <tr><td>Network</td><td>5+ Mbps</td><td>Download still works on slower connections, resumed automatically if interrupted</td></tr>
       </tbody>
     </table>
 
@@ -796,7 +827,7 @@
     <p>Just 3 steps to install any version of Roblox Player:</p>
 
     <pre><code><span class="cm"># 1. Install required libraries</span>
-<span class="ck">pip</span> <span class="cv">install</span> requests pygame
+<span class="ck">pip</span> <span class="cv">install</span> PySide6 requests pygame
 
 <span class="cm"># 2. Run the application</span>
 <span class="ck">python</span> <span class="cv">RobloxVersionDownloader.py</span>
@@ -805,7 +836,7 @@
 
     <div class="callout tip">
       <span class="callout-icon">✅</span>
-      <p>If you just want to install the <em>latest</em> version, click the <strong>"Latest"</strong> button — the app will automatically fill in the hash and begin installation without needing to find the hash manually.</p>
+      <p>If you just want to install the <em>latest</em> version, click <strong>"Latest"</strong> — the app fills in the hash automatically. To browse older builds, click <strong>"Previous"</strong> and choose from the popup list.</p>
     </div>
   </section>
 
@@ -835,7 +866,7 @@
       <li>
         <div class="step-body">
           <strong>Install required libraries</strong>
-          <p>Run: <code>pip install requests</code><br>For background music: <code>pip install pygame</code></p>
+          <p>Run: <code>pip install PySide6 requests</code><br>Optional: <code>pip install pygame winshell</code></p>
         </div>
       </li>
       <li>
@@ -852,32 +883,38 @@
       <li>
         <div class="step-body">
           <strong>Select a Version Hash</strong>
-          <p>Click <strong>"Latest"</strong> to automatically fetch the latest hash, or manually enter a specific hash in the input field.</p>
+          <p>Click <strong>"Latest"</strong> to fetch the newest hash, <strong>"Previous"</strong> to browse older builds, or manually type a known hash.</p>
         </div>
       </li>
       <li>
         <div class="step-body">
           <strong>Confirm the installation directory</strong>
-          <p>Default: <code>%LOCALAPPDATA%\Roblox\Versions\</code>. Click <strong>"📁 Browse..."</strong> to change it if needed.</p>
+          <p>Default: <code>%LOCALAPPDATA%\Roblox\Versions\</code>. Click <strong>"📁 Browse..."</strong> to change it. System folders are blocked for safety.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Configure install options</strong>
+          <p>In the <strong>OPTIONS</strong> panel, choose which extra steps to perform: register the <code>roblox://</code> protocol, install WebView2 silently, or create a Desktop shortcut.</p>
         </div>
       </li>
       <li>
         <div class="step-body">
           <strong>Start installation</strong>
-          <p>Click the red <strong>"⬇ INSTALL ROBLOX PLAYER"</strong> button. The app will check CDNs, download the manifest, and begin downloading packages.</p>
+          <p>Click the red <strong>"⬇ INSTALL ROBLOX PLAYER"</strong> button. The app probes all CDNs in parallel, downloads the manifest, then streams each package with live progress.</p>
         </div>
       </li>
       <li>
         <div class="step-body">
           <strong>Wait for completion</strong>
-          <p>Monitor the progress bars and log. Once finished, a dialog will ask if you want to open the installation folder.</p>
+          <p>Monitor the dual progress bars and log. Once finished, a dialog asks if you want to open the installation folder.</p>
         </div>
       </li>
     </ol>
 
     <div class="callout info">
       <span class="callout-icon">ℹ️</span>
-      <p>The <strong>cache</strong> folder (<code>%LOCALAPPDATA%\Roblox\Downloads\</code>) stores downloaded .zip files. Reinstalling the same version will use the cache — no need to re-download from CDN, saving time and bandwidth.</p>
+      <p>The <strong>cache</strong> folder (<code>%LOCALAPPDATA%\Roblox\Downloads\</code>) stores downloaded .zip files. If a download is interrupted, it resumes from the last byte on the next run — no wasted bandwidth.</p>
     </div>
   </section>
 
@@ -895,19 +932,24 @@
       </thead>
       <tbody>
         <tr><td>Version Hash field</td><td>Enter the hash of the version to install (format: <code>version-xxxxxxxxxxxxxxxx</code>)</td></tr>
-        <tr><td>"Latest" button</td><td>Calls the Roblox API to retrieve the hash of the latest Windows Player version</td></tr>
-        <tr><td>"✕" button</td><td>Quickly clears the content of the hash field</td></tr>
+        <tr><td>"Latest" button</td><td>Fetches the latest Windows Player hash — tries WEAO API first (<code>weao.xyz/api/versions/current</code>), falls back to the official Roblox API</td></tr>
+        <tr><td>"Previous" button</td><td>Opens a dialog listing recent versions from the WEAO past API (<code>weao.xyz/api/versions/past</code>); falls back to <code>DeployHistory.txt</code> if unavailable</td></tr>
+        <tr><td>"✕" button</td><td>Quickly clears the hash input field</td></tr>
         <tr><td>Preview line</td><td>Shows the manifest URL that will be accessed based on the entered hash</td></tr>
-        <tr><td>Versions folder</td><td>Root folder containing Roblox versions. Each version creates a subdirectory</td></tr>
+        <tr><td>Versions folder</td><td>Root folder for installations. Each version creates a subdirectory named after its hash</td></tr>
+        <tr><td>Register roblox:// checkbox</td><td>Writes <code>roblox://</code> and <code>roblox-player://</code> protocol keys to <code>HKCU\Software\Classes</code></td></tr>
+        <tr><td>Install WebView2 checkbox</td><td>Extracts and silently runs the WebView2 installer from the downloaded package (opt-in)</td></tr>
+        <tr><td>Create Desktop Shortcut checkbox</td><td>Places a <code>.lnk</code> shortcut on the Desktop pointing to <code>RobloxPlayerBeta.exe</code></td></tr>
         <tr><td>Red progress bar</td><td>Total % downloaded / installed across the entire process</td></tr>
         <tr><td>Purple progress bar</td><td>% of the package currently being downloaded</td></tr>
         <tr><td>% · Speed · ETA</td><td>Overall percentage, speed (KB/s or MB/s), and estimated time remaining</td></tr>
-        <tr><td>Current package name</td><td>Name of the .zip file currently being processed</td></tr>
-        <tr><td>Log window</td><td>Real-time log with status colors (yellow=in progress, green=OK, red=error)</td></tr>
+        <tr><td>Current package label</td><td>Name and % of the .zip file currently being processed</td></tr>
+        <tr><td>Log window</td><td>Real-time log with status colors (yellow = in progress, green = OK, red = error)</td></tr>
         <tr><td>"⬇ INSTALL" button</td><td>Starts the download and installation process</td></tr>
-        <tr><td>"✕ Cancel" button</td><td>Stops the running installation process (active only during installation)</td></tr>
-        <tr><td>Installation history</td><td>6 most recent versions — click ↺ to fill in the hash again, 📂 to open the folder</td></tr>
-        <tr><td>🎵 / 🔇 button</td><td>Toggle background music on / off (top-right corner of the header)</td></tr>
+        <tr><td>"✕ Cancel" button</td><td>Stops the running installation (active only during installation)</td></tr>
+        <tr><td>History rows</td><td>↺ loads the hash, 📂 opens the folder, 🗑 removes from history (and optionally deletes from disk)</td></tr>
+        <tr><td>🎵 / 🔇 button</td><td>Toggle background music on/off (top-right of header)</td></tr>
+        <tr><td>Volume slider</td><td>Horizontal slider (0–100%) next to the music button — adjusts playback volume in real time</td></tr>
       </tbody>
     </table>
   </section>
@@ -940,8 +982,14 @@
     <ol class="step-list">
       <li>
         <div class="step-body">
-          <strong>Fastest way — "Latest" button</strong>
-          <p>Click the button in the app. The Roblox API returns the hash automatically.</p>
+          <strong>Fastest — "Latest" button</strong>
+          <p>Click the button in the app. The Roblox API returns the current hash automatically.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-body">
+          <strong>Browse older versions — "Previous" button</strong>
+          <p>Opens a scrollable list fetched from the <strong>WEAO past API</strong> or CDN's <code>DeployHistory.txt</code> as fallback. Select any entry to load it instantly.</p>
         </div>
       </li>
       <li>
@@ -956,50 +1004,84 @@
           <p>Open <code>%LOCALAPPDATA%\Roblox\Versions\</code> and look at the subdirectory names — those are the hashes.</p>
         </div>
       </li>
-      <li>
-        <div class="step-body">
-          <strong>From RBXVersions / Bloxstrap history</strong>
-          <p>Community sites maintain a history of hashes by release date.</p>
-        </div>
-      </li>
     </ol>
+  </section>
+
+  <!-- OPTIONS -->
+  <section id="options">
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>Install Options</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p>Three checkboxes in the <strong>OPTIONS</strong> panel let you customize what happens after the packages are extracted.</p>
+
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Default</th><th>Details</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Register roblox:// protocol</td>
+          <td>✅ On</td>
+          <td>Writes <code>HKCU\Software\Classes\roblox</code> and <code>roblox-player</code> registry keys so browsers can launch Roblox games directly. Requires <code>winreg</code> (Windows only).</td>
+        </tr>
+        <tr>
+          <td>Install WebView2 Runtime</td>
+          <td>☐ Off</td>
+          <td>Extracts <code>WebView2RuntimeInstaller.zip</code> and runs the <code>.exe</code> with <code>/silent /install</code>. Enable this only if WebView2 is not already installed on the system.</td>
+        </tr>
+        <tr>
+          <td>Create Desktop Shortcut</td>
+          <td>☐ Off</td>
+          <td>Creates a <code>Roblox version-xxxx.lnk</code> shortcut on the Desktop pointing to <code>RobloxPlayerBeta.exe</code>. Uses <code>winshell</code> if available, otherwise falls back to a PowerShell command.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout info">
+      <span class="callout-icon">ℹ️</span>
+      <p>Options are applied at the <em>end</em> of installation, after all packages are extracted. Cancelling mid-way will not apply any options even if the checkboxes are enabled.</p>
+    </div>
   </section>
 
   <!-- HISTORY -->
   <section id="history">
     <div class="section-header">
-      <span class="section-number">08</span>
+      <span class="section-number">09</span>
       <h2>Installation History</h2>
       <div class="section-line"></div>
     </div>
 
-    <p>Each successful installation saves its information to a <code>download_history.json</code> file in the same directory as the script.</p>
+    <p>Each successful installation saves its information to <code>download_history.json</code> in the same directory as the script. Up to <strong>20 entries</strong> are stored; the most recent is always at the top.</p>
 
     <table>
       <thead>
         <tr><th>Button</th><th>Function</th></tr>
       </thead>
       <tbody>
-        <tr><td>↺ (Reload)</td><td>Fills the hash into the input field to reinstall the same version</td></tr>
+        <tr><td>↺ (Reload)</td><td>Fills the version hash into the input field to reinstall the same version</td></tr>
         <tr><td>📂 (Open folder)</td><td>Opens the installation folder for that version in File Explorer</td></tr>
+        <tr><td>🗑 (Delete)</td><td>Removes the entry from history. If the folder exists on disk, prompts to also delete it permanently.</td></tr>
       </tbody>
     </table>
 
-    <div class="callout info">
-      <span class="callout-icon">ℹ️</span>
-      <p>History stores a maximum of <strong>20 entries</strong>. The most recent entry is always at the top. The interface displays the <strong>6 most recent</strong> entries. You can view all entries in the JSON file.</p>
+    <div class="callout warn">
+      <span class="callout-icon">⚠️</span>
+      <p>Deleting via the 🗑 button is <strong>permanent</strong>. Files deleted this way are not moved to the Recycle Bin — they are removed with <code>shutil.rmtree</code>. Make sure you no longer need the installation before confirming.</p>
     </div>
   </section>
 
   <!-- MUSIC -->
   <section id="music">
     <div class="section-header">
-      <span class="section-number">09</span>
+      <span class="section-number">10</span>
       <h2>Background Music</h2>
       <div class="section-line"></div>
     </div>
 
-    <p>The application supports background music playback during downloads, requiring the <strong>pygame</strong> library and an MP3 audio file.</p>
+    <p>The application supports background music playback during downloads using <strong>pygame</strong> and an MP3 file placed in the <code>sound/</code> folder.</p>
 
     <h3 class="sub-head">Folder Structure</h3>
 
@@ -1012,11 +1094,11 @@
     <div class="grid-2">
       <div class="card">
         <div class="card-title">Enable background music</div>
-        <p>Place an MP3 file at <code>sound/music.mp3</code> and install <code>pip install pygame</code>. Music plays automatically when the application starts.</p>
+        <p>Place an MP3 at <code>sound/music.mp3</code> and install <code>pip install pygame</code>. Music starts automatically when the app launches at 60% volume.</p>
       </div>
       <div class="card">
         <div class="card-title">Toggle while in use</div>
-        <p>Click the 🎵 / 🔇 button in the top-right corner of the header to toggle. Default volume is 60%, adjustable in the code (<code>set_volume(0.60)</code>).</p>
+        <p>Click the 🎵 / 🔇 button in the top-right corner of the header to pause/resume at any time. Volume can be adjusted live with the <strong>slider</strong> next to the music button (range 0–100%, default 60%).</p>
       </div>
     </div>
   </section>
@@ -1024,85 +1106,94 @@
   <!-- TROUBLESHOOT -->
   <section id="troubleshoot">
     <div class="section-header">
-      <span class="section-number">10</span>
+      <span class="section-number">11</span>
       <h2>Troubleshooting</h2>
       <div class="section-line"></div>
+    </div>
+
+    <h3>"ModuleNotFoundError: No module named 'PySide6'"</h3>
+    <div class="card danger">
+      <div class="card-title">v1.2.0 now requires PySide6 instead of tkinter</div>
+      <p>Run <code>pip install PySide6</code> in your terminal. If you have an older environment, you may need to upgrade pip first: <code>python -m pip install --upgrade pip</code>.</p>
     </div>
 
     <h3>"Version Not Found" — Hash does not exist on CDN</h3>
     <div class="card warn">
       <div class="card-title">Cause &amp; Solution</div>
-      <p>The hash is incorrect or the version is too old and has been removed from the CDN. Double-check the 16-character hex hash. Use the <strong>"Latest"</strong> button to get a valid hash.</p>
+      <p>The hash is incorrect or the version has been removed from the CDN. Use the <strong>"Previous"</strong> button to browse valid hashes, or <strong>"Latest"</strong> for the current build.</p>
     </div>
 
     <h3>"Connection Lost" — ConnectionError</h3>
     <div class="card warn">
       <div class="card-title">Cause &amp; Solution</div>
-      <p>Check your Internet connection. Firewalls or VPNs sometimes block Roblox CDNs. Try disabling your VPN or changing DNS (8.8.8.8). The application automatically tries CDN fallbacks.</p>
+      <p>Check your Internet connection. If interrupted mid-download, simply click Install again — the download will <strong>resume automatically</strong> from the last byte. Firewalls or VPNs can block Roblox CDNs; try disabling or changing DNS (8.8.8.8).</p>
     </div>
 
     <h3>"Checksum Failed" — MD5 mismatch</h3>
     <div class="card warn">
       <div class="card-title">Cause &amp; Solution</div>
-      <p>The downloaded file was corrupted partway through. The app automatically deletes the corrupted cache file. Run the installation again — the file will be re-downloaded from scratch.</p>
+      <p>The file was corrupted during download. The app deletes the bad cache file automatically. Run Install again to re-download from scratch.</p>
     </div>
 
     <h3>"Write Permission Error" — PermissionError</h3>
     <div class="card warn">
       <div class="card-title">Cause &amp; Solution</div>
-      <p>The installation directory has restricted write permissions. Try running the Command Prompt / application <strong>as Administrator</strong>. Or select a different directory where the user has write access.</p>
+      <p>The install directory has restricted permissions. Try running as Administrator, or choose a different directory where your user account has write access.</p>
+    </div>
+
+    <h3>Desktop shortcut was not created</h3>
+    <div class="card">
+      <div class="card-title">Cause &amp; Solution</div>
+      <p>Verify that <code>RobloxPlayerBeta.exe</code> was extracted correctly (i.e., installation completed without error). If <code>winshell</code> is not installed, the app uses PowerShell as a fallback — make sure PowerShell execution policy allows scripts, or install <code>pip install winshell</code>.</p>
     </div>
 
     <h3>Music does not play — pygame error</h3>
     <div class="card">
       <div class="card-title">Cause &amp; Solution</div>
-      <p>Check: 1) Has <code>pip install pygame</code> been run? 2) Does <code>sound/music.mp3</code> exist? 3) Is the audio driver working normally? Music is <em>optional</em> and does not affect installation.</p>
-    </div>
-
-    <h3>Window does not appear / tkinter error</h3>
-    <div class="card danger">
-      <div class="card-title">Cause &amp; Solution</div>
-      <p>Python installed from the Microsoft Store sometimes lacks tkinter. Uninstall and reinstall Python from <strong>python.org</strong>. Verify with: <code>python -m tkinter</code> — if a test window opens, it's working.</p>
+      <p>Check: 1) <code>pip install pygame</code> has been run. 2) <code>sound/music.mp3</code> exists. 3) The audio driver is working. Music is optional and does not affect installation.</p>
     </div>
 
     <div class="callout tip">
       <span class="callout-icon">💡</span>
-      <p>When encountering an error, read the content in the <strong>Log window</strong> — each error message includes a description of the cause and a suggested resolution.</p>
+      <p>When encountering an error, read the <strong>Log window</strong> carefully — each message is color-coded and includes a description of the cause and a suggested resolution.</p>
     </div>
   </section>
 
   <!-- FAQ -->
   <section id="faq">
     <div class="section-header">
-      <span class="section-number">11</span>
+      <span class="section-number">12</span>
       <h2>Frequently Asked Questions</h2>
       <div class="section-line"></div>
     </div>
 
     <h3>Is the application safe?</h3>
-    <p>The application <strong>only downloads files from Roblox's official CDN</strong> (<code>setup.rbxcdn.com</code> and its subdomains). There is no hidden code and no data is sent to any external server. You can read the entire Python source code.</p>
+    <p>The application <strong>only downloads files from Roblox's official CDN</strong> (<code>setup.rbxcdn.com</code> and its subdomains). No data is sent to any external server. The full Python source code is open for review.</p>
 
     <h3>How is this different from a normal Roblox installation?</h3>
-    <p>Roblox's official installer always installs the latest version and does not allow choosing a specific version. This tool allows you to install <strong>any version</strong> by hash — useful when you want to roll back or test a specific build.</p>
+    <p>Roblox's official installer always installs the latest version and doesn't allow choosing a specific one. This tool lets you install <strong>any version</strong> by hash — useful for rolling back or testing a specific build.</p>
 
     <h3>Where is the cache? Can I delete it?</h3>
-    <p>Cache is located at <code>%LOCALAPPDATA%\Roblox\Downloads\</code>. It can be safely deleted when no longer needed. Reinstalling will re-download files from the CDN.</p>
+    <p>Cache is at <code>%LOCALAPPDATA%\Roblox\Downloads\</code>. Safe to delete when no longer needed. Reinstalling will re-download (and resume if connection drops).</p>
 
     <h3>Can multiple versions be installed at the same time?</h3>
-    <p>Yes! Each version creates its own subdirectory named after its hash. Install version A, then change the hash to B and install again — both versions coexist side by side under <code>Versions/</code>.</p>
+    <p>Yes. Each version creates its own subdirectory named after its hash under the Versions folder. Install version A, change hash to B, install again — both coexist.</p>
 
     <h3>The roblox:// protocol doesn't work after installation?</h3>
-    <p>The registry key is written to <code>HKCU\Software\Classes\roblox</code>. Restart your browser after installation. If it still doesn't work, verify that <code>RobloxPlayerBeta.exe</code> exists in the installation folder.</p>
+    <p>The registry key is written to <code>HKCU\Software\Classes\roblox</code>. Restart your browser after installation. If it still doesn't work, verify <code>RobloxPlayerBeta.exe</code> exists in the install folder and the "Register roblox:// protocol" checkbox was enabled.</p>
+
+    <h3>Why did you switch from tkinter to PySide6?</h3>
+    <p>PySide6 provides <strong>proper thread-safe signal/slot communication</strong> between the worker thread and the UI, native Qt widgets with reliable styling, and better cross-platform rendering. tkinter's <code>root.after()</code> workaround was functional but not idiomatic for multi-threaded applications.</p>
 
     <h3>Does it work on Mac / Linux?</h3>
-    <p>Technically, the download and extraction portions work cross-platform. However, <strong>Roblox's .exe files only run on Windows</strong>, so using this on macOS/Linux has no practical purpose.</p>
+    <p>The download and extraction code is cross-platform. However, <strong>Roblox's .exe files only run on Windows</strong>, so installing on macOS/Linux has no practical use. Registry and shortcut features are silently skipped on non-Windows systems.</p>
 
     <hr class="fancy">
 
     <div class="card accent" style="text-align:center; padding: 32px;">
-      <div class="card-title" style="font-size:15px; margin-bottom:8px;">⬦ ROBLOX VERSION DOWNLOADER v1.1.0</div>
+      <div class="card-title" style="font-size:15px; margin-bottom:8px;">⬦ ROBLOX VERSION DOWNLOADER v1.2.0</div>
       <p style="color:var(--muted); font-family:var(--mono); font-size:12px;">
-        Documentation generated from source code &nbsp;·&nbsp; Python 3.8+ &nbsp;·&nbsp; MIT-style
+        By HoangLong &nbsp;·&nbsp; Python 3.8+ · PySide6 &nbsp;·&nbsp; Documentation updated for v1.2.0
       </p>
     </div>
 
@@ -1111,7 +1202,6 @@
 </main>
 
 <script>
-  // Active nav link on scroll
   const sections = document.querySelectorAll('section[id], .hero');
   const navLinks = document.querySelectorAll('nav a');
 
